@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <meta name="msapplication-tap-highlight" content="no" />
+		<script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+        <link rel="stylesheet" href="JQ/jquery.mobile-1.4.2.min.css" />
+        <script src="JQ/jquery-2.1.1.min.js"></script>
+        <script src="JQ/jquery.mobile-1.4.2.min.js"></script>
+		<script>
+		 	function init() {
+			 
+			    // funciones de navegacion entre las paginas
+				$("#IrPaginaInicio2").click(function (e) {
+				    $.mobile.changePage("#Inicio", { transition: "slideup", role: "pop" });
+				});
+				$("#IrPaginaInicio3").click(function (e) {
+				    $.mobile.changePage("#Inicio", { transition: "slideup", role: "pop" });
+				});
+
+				$("#btnPaginaPalabras").click(function (e) {
+				    $.mobile.changePage("#paginaPalabras", { transition: "flip  ", role: "pop" });
+				});
+				$("#btnPaginaDatosBBDD").click(function (e) {
+				    $.mobile.changePage("#PaginaBBDD", { transition: "flip  ", role: "pop" });
+				});
+				$("#btnPaginaMusica").click(function (e) {
+				    $.mobile.changePage("#PaginaMusica", { transition: "flip  ", role: "pop" });
+				});
+
+			      // funcion para reproducir audio
+
+				var objReproductor = new Audio();
+				objReproductor.src = "song/bip2.mp3";
+
+				$("#btnPlay").click(function (e) {
+				    // Play the audio file at url
+					console.log("Entra en la fucnion");
+				    objReproductor.play();
+				    //Repetir la musica hasta que se pare
+				    $(objReproductor).on('ended', function () {
+				        objReproductor.play();
+				    });
+				});
+
+				$("#btnStop").click(function (e) {
+				    objReproductor.pause();
+				});
+
+			  };
+		</script>
+        <title>juego</title>
+    </head>
+<body onload="init()">
+    <!-------
+        pagina principal
+    ------->
+    <div data-role="page" id="Inicio">
+        <div data-role="header">
+            <h1>Pruebas en PhoneGAP</h1>
+        </div>
+        <div data-role="content">
+            <img src="img/logo.png" alt="" />
+        </div>
+        <input id="btnPaginaPalabras" type="button" value="Palabra" />
+        <input id="btnPaginaMusica" type="button" value="Musica" />
+    </div>
+    <!-------
+        Pagina de prueba con vuelta
+    -------->
+    <div data-role="page" id="paginaPalabras">
+        <h2>Esto es una prueba</h2>
+        <img src="img/atras.jpg" alt="Atras" id="IrPaginaInicio2" />
+    </div>
+    <!-------
+        Pagina de prueba con vuelta
+    -------->
+    <div data-role="page" id="PaginaMusica">
+        <div data-role="header">
+            <h1>Prueba Musica</h1>
+        </div>
+        <div data-role="content">
+            <input id="btnPlay" type="button" value="Play" />
+            <input id="btnStop" type="button" value="Stop" />
+            <img src="img/atras.jpg" alt="Atras" id="IrPaginaInicio3" />
+        </div>
+    </div>
+</body>
+</html>

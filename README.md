@@ -1,2 +1,2 @@
-# practica
-Practicas con Phonegap
+# juegos
+Esto es una pruenba de sonido
